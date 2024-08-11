@@ -1,7 +1,7 @@
 import { assets } from '../../assets/assets';
 import { Context } from '../../context/context';
 import './Main.css';
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 
 const Main = () => {
 
@@ -14,7 +14,21 @@ const Main = () => {
         loading,
         resultData,
         input,
-        setInput} = useContext(Context)
+        setInput,
+        transcript,
+        listening,
+        resetTranscript,
+        browserSupportsSpeechRecognition,
+        SpeechRecognition} = useContext(Context)
+
+        if (!browserSupportsSpeechRecognition) {
+            return <span>Browser doesn't support speech recognition.</span>;
+          }
+
+    useEffect(()=>{
+        setInput(transcript)
+        console.log(transcript)
+    },[transcript])
 
   return (
     <div className="main">
@@ -76,7 +90,7 @@ const Main = () => {
                     <input onChange={(e)=>setInput(e.target.value)} value={input} type="text" placeholder='Enter a prompt here' />
                     <div>
                         <img src={assets.gallery_icon} alt="" />
-                        <img src={assets.mic_icon} alt="" />
+                        <img onClick={SpeechRecognition.startListening} src={assets.mic_icon} alt="" />
                         <img onClick={()=>onSent()} src={assets.send_icon} alt="" />
                     </div>
                 </div>

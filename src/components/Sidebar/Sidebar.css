@@ -55,6 +55,18 @@
 
 }
 
+.sidebar .bottom-item{
+    display: flex;
+    align-items: start;
+    gap: 10px;
+    padding: 10px;
+    padding-right: 40px;
+    border-radius: 50px;
+    color:#282828; 
+    cursor: pointer;
+
+}
+
 /*  For Hower effect */
 
 .sidebar .recent-entry:hover{
@@ -75,4 +87,13 @@
     .sidebar{
         display: none;
     }
+}
+
+/* For adding Scroll bar to Recent tab */
+.recent-entries-list{
+    height: 44vh;
+    overflow-y: scroll;
+}
+.recent-entries-list::-webkit-scrollbar{
+    display: none;
 }

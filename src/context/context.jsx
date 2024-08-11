@@ -1,9 +1,21 @@
+import 'regenerator-runtime/runtime';// It should be at the top of the file to reolve the error :(Rgenerator-runtime/runtime)
+
 import { createContext, useState } from "react";
 import run from "../config/gemini";
+
+// To include Speech Recognition functionality
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 export const Context = createContext();
 
 const ContextProvider = (props) => {
+
+    const {
+        transcript,
+        listening,
+        resetTranscript,
+        browserSupportsSpeechRecognition
+      } = useSpeechRecognition();
 
     const [input, setInput] = useState("")
     const [recentPrompt, setRecentPrompt] = useState("")
@@ -70,7 +82,12 @@ const ContextProvider = (props) => {
         resultData,
         input,
         setInput,
-        newChat
+        newChat,
+        transcript,
+        listening,
+        resetTranscript,
+        browserSupportsSpeechRecognition,
+        SpeechRecognition
     }
     // onSent("What is the full form of HTML")
 
