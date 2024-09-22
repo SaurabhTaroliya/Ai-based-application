@@ -138,7 +138,7 @@
     gap: 20px;
 }
 
-.result img{
+.result #profile-img{
     width: 40px;
     border-radius: 50%;
 }
@@ -148,6 +148,10 @@
     align-items: start;
     gap: 20px;
 
+}
+.result-data #imgUrl{
+    height: 385px;
+    width: 430px;
 }
 
 .loader{

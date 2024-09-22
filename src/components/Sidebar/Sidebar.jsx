@@ -28,7 +28,7 @@ const Sidebar = () => {
                     <div className="recent-entries-list">
                         {prevPrompts.reverse().map((item, index)=>{ // reverse() is used to reverse the prevPrompts array
                             return (
-                                <div className="recent-entry">
+                                <div className="recent-entry" key={index}>
                                     <img src={assets.message_icon} alt="message_icon" />
                                     <p onClick={()=>loadPrompt(item)}>{item.slice(0,18)}...</p>
                                 </div>

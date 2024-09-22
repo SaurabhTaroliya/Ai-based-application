@@ -19,7 +19,9 @@ const Main = () => {
         listening,
         resetTranscript,
         browserSupportsSpeechRecognition,
-        SpeechRecognition} = useContext(Context)
+        SpeechRecognition,
+        responseType,
+        imageUrl} = useContext(Context)
 
         if (!browserSupportsSpeechRecognition) {
             return <span>Browser doesn't support speech recognition.</span>;
@@ -66,7 +68,7 @@ const Main = () => {
                 </>
             : <div className='result'>
                 <div className="result-title">
-                    <img src={assets.user_icon} alt="" />
+                    <img id='profile-img' src={assets.user_icon} alt="" />
                     <p>{recentPrompt}</p>
                 </div>
                 <div className="result-data">
@@ -77,8 +79,11 @@ const Main = () => {
                         <hr />
                         <hr />
                     </div>
-                    :
-                    <p dangerouslySetInnerHTML={{__html:resultData}} ></p>
+                    : <div className="response">
+                        {responseType === "image" ? <img id='imgUrl' src={imageUrl} alt="" /> : <p dangerouslySetInnerHTML={{__html:resultData}} ></p>  }
+                    </div>
+                    // <p dangerouslySetInnerHTML={{__html:resultData}} ></p>
+                    
                     }   
                 </div>
             </div>
@@ -91,7 +96,7 @@ const Main = () => {
                     <div>
                         <img src={assets.gallery_icon} alt="" />
                         <img onClick={SpeechRecognition.startListening} src={assets.mic_icon} alt="" />
-                        <img onClick={()=>onSent()} src={assets.send_icon} alt="" />
+                        <img onClick={()=>onSent(input)} src={assets.send_icon} alt="" />
                     </div>
                 </div>
                 <p className="bottom-info">
